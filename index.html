@@ -145,11 +145,11 @@
       }
 
       .resume {
-        padding-top: 8px;
+        padding-top: var(--space-title-to-content);
       }
 
       .resume__intro {
-        padding-bottom: 48px;
+        padding-bottom: 0;
         margin-bottom: 0;
       }
 
@@ -318,28 +318,14 @@
         margin-top: var(--space-title-to-content);
       }
 
-      /* 13px captions: work dates + education years + QR channel titles */
+      /* 13px captions: work dates + education years */
       .resume__job-meta,
-      .resume__edu-period,
-      .resume__experience-qrs__label {
+      .resume__edu-period {
         margin: 0 0 var(--space-subtitle-to-title);
         font-size: var(--font-caption-size);
         font-weight: var(--font-caption-weight);
         line-height: var(--font-caption-line);
         color: var(--color-text-secondary);
-      }
-
-      .resume__experience-qrs__labels {
-        display: flex;
-        justify-content: stretch;
-        gap: 16px;
-        max-width: min(100%, 320px);
-        margin-bottom: 0;
-      }
-
-      .resume__experience-qrs__label {
-        flex: 1;
-        text-align: center;
       }
 
       .resume__edu-degree {
@@ -483,6 +469,7 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
       (function () {
         var ICONS = {
@@ -593,29 +580,10 @@
               }
               ex.appendChild(jobEl);
             });
-            if (data.experienceQr && data.experienceQr.src) {
-              var qrWrap = el("div", "resume__experience-qrs");
-              var labelTexts =
-                data.experienceQr.labels && data.experienceQr.labels.length
-                  ? data.experienceQr.labels
-                  : ["Telegram", "WhatsApp"];
-              var labelRow = el("div", "resume__experience-qrs__labels");
-              labelTexts.forEach(function (labelText) {
-                labelRow.appendChild(el("span", "resume__experience-qrs__label", labelText));
-              });
-              qrWrap.appendChild(labelRow);
-              var qrImg = document.createElement("img");
-              qrImg.className = "resume__experience-qrs__img";
-              qrImg.alt = data.experienceQr.alt || "";
-              qrImg.decoding = "async";
-              qrImg.src = siteBasePrefix() + String(data.experienceQr.src).replace(/^\//, "");
-              qrWrap.appendChild(qrImg);
-              ex.appendChild(qrWrap);
-            }
             main.appendChild(ex);
           }
 
-          /* right column: expertise, tools, certificates, education, languages */
+          /* expertise under work experience (left column) */
           if (data.skills && (data.skills.items || []).length) {
             var expSec = el("section", "resume__section");
             expSec.appendChild(el("h2", "resume__section-title", "expertise"));
@@ -624,9 +592,10 @@
               expul.appendChild(el("li", null, t));
             });
             expSec.appendChild(expul);
-            side.appendChild(expSec);
+            main.appendChild(expSec);
           }
 
+          /* right column: tools, certificates, education, languages, then QR */
           if (data.skills && data.skills.tools) {
             var toolsSec = el("section", "resume__section");
             toolsSec.appendChild(el("h2", "resume__section-title", "tools"));
@@ -671,6 +640,17 @@
             });
             lang.appendChild(lul);
             side.appendChild(lang);
+          }
+
+          if (data.experienceQr && data.experienceQr.src) {
+            var qrWrap = el("div", "resume__experience-qrs");
+            var qrImg = document.createElement("img");
+            qrImg.className = "resume__experience-qrs__img";
+            qrImg.alt = data.experienceQr.alt || "";
+            qrImg.decoding = "async";
+            qrImg.src = siteBasePrefix() + String(data.experienceQr.src).replace(/^\//, "");
+            qrWrap.appendChild(qrImg);
+            side.appendChild(qrWrap);
           }
 
           grid.appendChild(main);
@@ -720,38 +700,61 @@
         }
 
         btnPdf.addEventListener("click", function () {
-          if (typeof html2pdf === "undefined") {
-            alert("Could not load PDF library. Check your connection.");
+          var JsPDF = (window.jspdf && window.jspdf.jsPDF) || window.jsPDF;
+          if (typeof html2canvas === "undefined" || !JsPDF) {
+            alert("Could not load PDF libraries. Check your connection and refresh the page.");
             return;
           }
 
           btnPdf.disabled = true;
           var name = safeFilename();
-          cv.classList.add("is-pdf-export");
+          var pageEl = document.querySelector(".page");
+          if (!pageEl) {
+            btnPdf.disabled = false;
+            return;
+          }
 
-          var opt = {
-            margin: [14, 14, 14, 14],
-            filename: name,
-            image: { type: "jpeg", quality: 0.98 },
-            html2canvas: {
-              scale: 2,
-              useCORS: true,
-              letterRendering: true,
-              logging: false,
-              backgroundColor: "#ffffff",
-              onclone: function (clonedDoc) {
-                var node = clonedDoc.getElementById("cv");
-                if (node) node.style.color = "#111111";
-              },
-            },
-            jsPDF: { unit: "mm", format: "a4", orientation: "portrait", compress: true },
-            pagebreak: { mode: ["avoid-all", "css", "legacy"] },
-          };
+          cv.classList.add("is-pdf-export");
 
           document.fonts.ready
             .catch(function () {})
             .then(function () {
-              return html2pdf().set(opt).from(cv).save();
+              return html2canvas(pageEl, {
+                scale: 2,
+                useCORS: true,
+                allowTaint: true,
+                logging: false,
+                backgroundColor: "#ffffff",
+                scrollX: 0,
+                scrollY: -window.scrollY,
+                windowWidth: pageEl.scrollWidth,
+                windowHeight: pageEl.scrollHeight,
+                onclone: function (clonedDoc) {
+                  var node = clonedDoc.getElementById("cv");
+                  if (node) node.style.color = "#111111";
+                },
+              });
+            })
+            .then(function (canvas) {
+              var imgData = canvas.toDataURL("image/jpeg", 0.92);
+              var pdf = new JsPDF({ unit: "mm", format: "a4", orientation: "portrait", compress: true });
+              var pageWidth = pdf.internal.pageSize.getWidth();
+              var pageHeight = pdf.internal.pageSize.getHeight();
+              var marginMm = 8;
+              var maxW = pageWidth - 2 * marginMm;
+              var maxH = pageHeight - 2 * marginMm;
+              var cw = canvas.width;
+              var ch = canvas.height;
+              var imgW = maxW;
+              var imgH = (ch * imgW) / cw;
+              if (imgH > maxH) {
+                imgH = maxH;
+                imgW = (cw * imgH) / ch;
+              }
+              var x = marginMm + (maxW - imgW) / 2;
+              var y = marginMm + (maxH - imgH) / 2;
+              pdf.addImage(imgData, "JPEG", x, y, imgW, imgH, undefined, "FAST");
+              pdf.save(name);
             })
             .catch(function () {
               alert("Something went wrong while creating the PDF.");
