@@ -106,6 +106,15 @@
         background: var(--color-text);
         color: var(--color-bg);
         cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .btn-pdf svg {
+        flex-shrink: 0;
+        width: 16px;
+        height: 16px;
       }
 
       .btn-pdf:hover {
@@ -134,13 +143,38 @@
         padding-top: 8px;
       }
 
+      .resume__intro {
+        border-bottom: 1px solid var(--color-divider);
+        padding-bottom: var(--space-section-max);
+        margin-bottom: 0;
+      }
+
       .resume__header {
         display: grid;
         grid-template-columns: 1fr auto 1fr;
         gap: 24px 32px;
-        align-items: start;
-        padding-bottom: var(--space-section-max);
-        border-bottom: 1px solid var(--color-divider);
+        align-items: end;
+        padding-bottom: 20px;
+      }
+
+      .resume__about-full {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .resume__about-full .resume__section-title {
+        margin-bottom: var(--space-title-to-content);
+      }
+
+      .resume__about-full .resume__prose {
+        max-width: none;
+        text-align: justify;
+        hyphens: auto;
+        -webkit-hyphens: auto;
+      }
+
+      .resume__about-full .resume__prose + .resume__prose {
+        margin-top: var(--space-title-to-paragraph);
       }
 
       .resume__name {
@@ -155,7 +189,6 @@
       .resume__title {
         margin: 0;
         text-align: center;
-        align-self: center;
         font-size: var(--font-title-m-size);
         font-weight: var(--font-title-m-weight);
         line-height: var(--font-title-m-line);
@@ -178,9 +211,9 @@
         justify-content: flex-end;
         gap: 8px;
         margin-bottom: 6px;
-        font-size: var(--font-caption-size);
-        font-weight: var(--font-caption-weight);
-        line-height: var(--font-caption-line);
+        font-size: var(--font-body-l-size);
+        font-weight: var(--font-body-l-weight);
+        line-height: var(--font-body-l-line);
         color: var(--color-text-secondary);
       }
 
@@ -200,8 +233,8 @@
 
       .resume__contact svg {
         flex-shrink: 0;
-        width: 14px;
-        height: 14px;
+        width: 16px;
+        height: 16px;
         color: var(--color-text-secondary);
       }
 
@@ -210,7 +243,7 @@
         grid-template-columns: minmax(0, 35%) minmax(0, 65%);
         gap: var(--space-grid) 56px;
         align-items: start;
-        padding-top: var(--space-section-max);
+        padding-top: var(--space-section);
       }
 
       .resume__section {
@@ -422,7 +455,7 @@
       }
 
       @media (max-width: 800px) {
-        .resume__header {
+        .resume__intro .resume__header {
           grid-template-columns: 1fr;
         }
 
@@ -453,7 +486,14 @@
   </head>
   <body>
     <header class="toolbar">
-      <button type="button" class="btn-pdf" id="btn-pdf">Download PDF</button>
+      <button type="button" class="btn-pdf" id="btn-pdf">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+          <polyline points="7 10 12 15 17 10" />
+          <line x1="12" x2="12" y1="15" y2="3" />
+        </svg>
+        Download PDF
+      </button>
     </header>
 
     <div class="page">
@@ -517,21 +557,23 @@
           });
           header.appendChild(ul);
 
-          root.appendChild(header);
+          var intro = el("div", "resume__intro");
+          intro.appendChild(header);
+
+          if (data.about && data.about.length) {
+            var aboutSec = el("section", "resume__about-full");
+            aboutSec.appendChild(el("h2", "resume__section-title", "about"));
+            data.about.forEach(function (p) {
+              aboutSec.appendChild(el("p", "resume__prose", p));
+            });
+            intro.appendChild(aboutSec);
+          }
+
+          root.appendChild(intro);
 
           var grid = el("div", "resume__grid");
           var side = el("aside", "resume__sidebar");
           var main = el("div", "resume__main");
-
-          /* about */
-          if (data.about && data.about.length) {
-            var sec = el("section", "resume__section");
-            sec.appendChild(el("h2", "resume__section-title", "about"));
-            data.about.forEach(function (p) {
-              sec.appendChild(el("p", "resume__prose", p));
-            });
-            side.appendChild(sec);
-          }
 
           /* education */
           if (data.education && data.education.length) {
