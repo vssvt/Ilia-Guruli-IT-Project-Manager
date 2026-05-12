@@ -212,10 +212,10 @@
         justify-content: flex-end;
         gap: 8px;
         margin-bottom: 6px;
-        font-size: var(--font-body-l-size);
-        font-weight: var(--font-body-l-weight);
-        line-height: var(--font-body-l-line);
-        color: var(--color-text-secondary);
+        font-size: var(--font-body-s-size);
+        font-weight: var(--font-body-s-weight);
+        line-height: var(--font-body-s-line);
+        color: var(--color-text);
       }
 
       .resume__contact li:last-child {
@@ -236,7 +236,7 @@
         flex-shrink: 0;
         width: 16px;
         height: 16px;
-        color: var(--color-text-secondary);
+        color: var(--color-text);
       }
 
       .resume__grid {
@@ -318,12 +318,28 @@
         margin-top: var(--space-title-to-content);
       }
 
-      .resume__edu-period {
+      /* 13px captions: work dates + education years + QR channel titles */
+      .resume__job-meta,
+      .resume__edu-period,
+      .resume__experience-qrs__label {
         margin: 0 0 var(--space-subtitle-to-title);
         font-size: var(--font-caption-size);
         font-weight: var(--font-caption-weight);
         line-height: var(--font-caption-line);
         color: var(--color-text-secondary);
+      }
+
+      .resume__experience-qrs__labels {
+        display: flex;
+        justify-content: stretch;
+        gap: 16px;
+        max-width: min(100%, 320px);
+        margin-bottom: 0;
+      }
+
+      .resume__experience-qrs__label {
+        flex: 1;
+        text-align: center;
       }
 
       .resume__edu-degree {
@@ -367,14 +383,6 @@
 
       .resume__job-title {
         margin: 0 0 4px;
-      }
-
-      .resume__job-meta {
-        margin: 0 0 var(--space-subtitle-to-title);
-        font-size: var(--font-body-s-size);
-        font-weight: var(--font-body-s-weight);
-        line-height: var(--font-body-s-line);
-        color: var(--color-text-secondary);
       }
 
       .resume__job-desc {
@@ -587,10 +595,18 @@
             });
             if (data.experienceQr && data.experienceQr.src) {
               var qrWrap = el("div", "resume__experience-qrs");
+              var labelTexts =
+                data.experienceQr.labels && data.experienceQr.labels.length
+                  ? data.experienceQr.labels
+                  : ["Telegram", "WhatsApp"];
+              var labelRow = el("div", "resume__experience-qrs__labels");
+              labelTexts.forEach(function (labelText) {
+                labelRow.appendChild(el("span", "resume__experience-qrs__label", labelText));
+              });
+              qrWrap.appendChild(labelRow);
               var qrImg = document.createElement("img");
               qrImg.className = "resume__experience-qrs__img";
               qrImg.alt = data.experienceQr.alt || "";
-              qrImg.loading = "lazy";
               qrImg.decoding = "async";
               qrImg.src = siteBasePrefix() + String(data.experienceQr.src).replace(/^\//, "");
               qrWrap.appendChild(qrImg);

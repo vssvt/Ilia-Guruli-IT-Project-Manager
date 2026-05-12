@@ -113,7 +113,8 @@
   ],
   "experienceQr": {
     "src": "assets/qr-telegram-whatsapp.png",
-    "alt": "Telegram and WhatsApp QR codes"
+    "alt": "Telegram and WhatsApp QR codes",
+    "labels": ["Telegram", "WhatsApp"]
   },
   "footer": "Last updated: May 2026"
 }
