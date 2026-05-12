@@ -299,6 +299,17 @@
         margin-bottom: 0;
       }
 
+      /* 16px title style: employers, degree lines, language names */
+      .resume__job-title,
+      .resume__edu-degree,
+      .resume__lang strong {
+        font-size: var(--font-body-l-size);
+        font-weight: 600;
+        line-height: var(--font-body-l-line);
+        letter-spacing: var(--font-title-m-track);
+        color: var(--color-text);
+      }
+
       .resume__edu-block + .resume__edu-block {
         margin-top: var(--space-title-to-content);
       }
@@ -313,10 +324,6 @@
 
       .resume__edu-degree {
         margin: 0 0 4px;
-        font-size: var(--font-body-l-size);
-        font-weight: 600;
-        line-height: var(--font-body-l-line);
-        color: var(--color-text);
       }
 
       .resume__edu-school {
@@ -338,13 +345,6 @@
 
       .resume__lang li {
         margin-bottom: 6px;
-      }
-
-      .resume__lang strong {
-        font-size: var(--font-body-l-size);
-        font-weight: 600;
-        line-height: var(--font-body-l-line);
-        color: var(--color-text);
       }
 
       .resume__tools {
@@ -370,15 +370,10 @@
 
       .resume__job-title {
         margin: 0 0 4px;
-        font-size: var(--font-title-l-size);
-        font-weight: var(--font-title-l-weight);
-        line-height: var(--font-title-l-line);
-        letter-spacing: var(--font-title-l-track);
-        color: var(--color-text);
       }
 
       .resume__job-meta {
-        margin: 0;
+        margin: 0 0 6px;
         font-size: var(--font-body-s-size);
         font-weight: var(--font-body-s-weight);
         line-height: var(--font-body-s-line);
@@ -552,13 +547,13 @@
             data.experience.forEach(function (job) {
               var jobEl = el("div", "resume__job");
               var head = el("div", "resume__job-head");
-              if (job.company) {
-                head.appendChild(el("h3", "resume__job-title", job.company));
-              }
               if (job.period) {
                 var meta = el("p", "resume__job-meta");
                 meta.appendChild(el("span", null, job.period));
                 head.appendChild(meta);
+              }
+              if (job.company) {
+                head.appendChild(el("h3", "resume__job-title", job.company));
               }
               jobEl.appendChild(head);
               if (job.description) {
