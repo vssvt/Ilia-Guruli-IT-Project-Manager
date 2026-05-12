@@ -115,6 +115,8 @@
         flex-shrink: 0;
         width: 16px;
         height: 16px;
+        stroke: currentColor;
+        color: inherit;
       }
 
       .btn-pdf:hover {
@@ -144,7 +146,6 @@
       }
 
       .resume__intro {
-        border-bottom: 1px solid var(--color-divider);
         padding-bottom: var(--space-section-max);
         margin-bottom: 0;
       }
@@ -160,10 +161,7 @@
       .resume__about-full {
         width: 100%;
         max-width: 100%;
-      }
-
-      .resume__about-full .resume__section-title {
-        margin-bottom: var(--space-title-to-content);
+        margin-top: var(--space-title-to-content);
       }
 
       .resume__about-full .resume__prose {
@@ -240,7 +238,7 @@
 
       .resume__grid {
         display: grid;
-        grid-template-columns: minmax(0, 35%) minmax(0, 65%);
+        grid-template-columns: minmax(0, 65%) minmax(0, 35%);
         gap: var(--space-grid) 56px;
         align-items: start;
         padding-top: var(--space-section);
@@ -562,7 +560,6 @@
 
           if (data.about && data.about.length) {
             var aboutSec = el("section", "resume__about-full");
-            aboutSec.appendChild(el("h2", "resume__section-title", "about"));
             data.about.forEach(function (p) {
               aboutSec.appendChild(el("p", "resume__prose", p));
             });
@@ -572,68 +569,10 @@
           root.appendChild(intro);
 
           var grid = el("div", "resume__grid");
-          var side = el("aside", "resume__sidebar");
           var main = el("div", "resume__main");
+          var side = el("aside", "resume__sidebar");
 
-          /* education */
-          if (data.education && data.education.length) {
-            var ed = el("section", "resume__section");
-            ed.appendChild(el("h2", "resume__section-title", "education"));
-            data.education.forEach(function (item) {
-              var block = el("div", "resume__edu-block");
-              block.appendChild(el("p", "resume__edu-period", item.period || ""));
-              block.appendChild(el("p", "resume__edu-degree", item.degree || ""));
-              block.appendChild(el("p", "resume__edu-school", item.institution || ""));
-              ed.appendChild(block);
-            });
-            side.appendChild(ed);
-          }
-
-          /* languages */
-          if (data.languages && data.languages.length) {
-            var lang = el("section", "resume__section");
-            lang.appendChild(el("h2", "resume__section-title", "languages"));
-            var lul = el("ul", "resume__lang");
-            data.languages.forEach(function (L) {
-              var li = el("li");
-              var s = el("strong", null, L.name || "");
-              li.appendChild(s);
-              li.appendChild(document.createTextNode(" — " + (L.level || "")));
-              lul.appendChild(li);
-            });
-            lang.appendChild(lul);
-            side.appendChild(lang);
-          }
-
-          /* skills */
-          if (data.skills && (data.skills.items || []).length) {
-            var sk = el("section", "resume__section");
-            sk.appendChild(el("h2", "resume__section-title", "skills"));
-            var skul = el("ul", "resume__list");
-            data.skills.items.forEach(function (t) {
-              skul.appendChild(el("li", null, t));
-            });
-            sk.appendChild(skul);
-            if (data.skills.tools) {
-              sk.appendChild(el("p", "resume__tools-label", data.skills.toolsLabel || "Tools"));
-              sk.appendChild(el("p", "resume__tools", data.skills.tools));
-            }
-            side.appendChild(sk);
-          }
-
-          /* certificates */
-          if (data.certificates && data.certificates.length) {
-            var ce = el("section", "resume__section");
-            ce.appendChild(el("h2", "resume__section-title", "certificates"));
-            var cul = el("ul", "resume__certs");
-            data.certificates.forEach(function (c) {
-              cul.appendChild(el("li", null, c));
-            });
-            ce.appendChild(cul);
-            side.appendChild(ce);
-          }
-
-          /* experience */
+          /* work experience (left column) */
           if (data.experience && data.experience.length) {
             var ex = el("section", "resume__section");
             ex.appendChild(el("h2", "resume__section-title", "work experience"));
@@ -666,8 +605,63 @@
             main.appendChild(ex);
           }
 
-          grid.appendChild(side);
+          /* right column: skills (+ tools), certificates, education, languages */
+          if (data.skills && (data.skills.items || []).length) {
+            var sk = el("section", "resume__section");
+            sk.appendChild(el("h2", "resume__section-title", "skills"));
+            var skul = el("ul", "resume__list");
+            data.skills.items.forEach(function (t) {
+              skul.appendChild(el("li", null, t));
+            });
+            sk.appendChild(skul);
+            if (data.skills.tools) {
+              sk.appendChild(el("p", "resume__tools-label", data.skills.toolsLabel || "Tools"));
+              sk.appendChild(el("p", "resume__tools", data.skills.tools));
+            }
+            side.appendChild(sk);
+          }
+
+          if (data.certificates && data.certificates.length) {
+            var ce = el("section", "resume__section");
+            ce.appendChild(el("h2", "resume__section-title", "certificates"));
+            var cul = el("ul", "resume__certs");
+            data.certificates.forEach(function (c) {
+              cul.appendChild(el("li", null, c));
+            });
+            ce.appendChild(cul);
+            side.appendChild(ce);
+          }
+
+          if (data.education && data.education.length) {
+            var ed = el("section", "resume__section");
+            ed.appendChild(el("h2", "resume__section-title", "education"));
+            data.education.forEach(function (item) {
+              var block = el("div", "resume__edu-block");
+              block.appendChild(el("p", "resume__edu-period", item.period || ""));
+              block.appendChild(el("p", "resume__edu-degree", item.degree || ""));
+              block.appendChild(el("p", "resume__edu-school", item.institution || ""));
+              ed.appendChild(block);
+            });
+            side.appendChild(ed);
+          }
+
+          if (data.languages && data.languages.length) {
+            var lang = el("section", "resume__section");
+            lang.appendChild(el("h2", "resume__section-title", "languages"));
+            var lul = el("ul", "resume__lang");
+            data.languages.forEach(function (L) {
+              var li = el("li");
+              var s = el("strong", null, L.name || "");
+              li.appendChild(s);
+              li.appendChild(document.createTextNode(" — " + (L.level || "")));
+              lul.appendChild(li);
+            });
+            lang.appendChild(lul);
+            side.appendChild(lang);
+          }
+
           grid.appendChild(main);
+          grid.appendChild(side);
           root.appendChild(grid);
 
           if (data.footer) {
@@ -677,17 +671,30 @@
           document.title = (data.name || "Resume") + (data.title ? " — " + data.title : "");
         }
 
+        /* Resolve data URL so project Pages works with or without trailing slash on the path. */
+        function cvDataJsonUrl() {
+          var p = location.pathname;
+          if (!p.endsWith("/")) {
+            if (/\.html$/i.test(p)) p = p.replace(/\/[^/]+$/, "/");
+            else p += "/";
+          }
+          return location.origin + p + "cv-data.json";
+        }
+
         function loadData() {
-          return fetch("cv-data.json", { cache: "no-store" })
+          var url = cvDataJsonUrl();
+          return fetch(url, { cache: "no-store" })
             .then(function (r) {
-              if (!r.ok) throw new Error("cv-data.json");
+              if (!r.ok) throw new Error(url);
               return r.json();
             })
             .then(renderResume)
             .catch(function () {
               var root = document.getElementById("cv");
               root.innerHTML =
-                '<p class="resume__prose">Could not load <strong>cv-data.json</strong>. Open this site via a web server or GitHub Pages, or ensure the file is in the same folder as index.html.</p>';
+                '<p class="resume__prose">Could not load <strong>cv-data.json</strong> from <code style="word-break:break-all">' +
+                url +
+                "</code>. Use the URL with a trailing slash, open via a local server, or confirm the file is deployed next to index.html.</p>";
             });
         }
 
