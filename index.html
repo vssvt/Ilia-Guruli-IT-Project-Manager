@@ -264,13 +264,6 @@
         color: var(--color-text);
       }
 
-      .resume__main .resume__section-title {
-        font-size: var(--font-heading-l-size);
-        font-weight: var(--font-heading-l-weight);
-        line-height: var(--font-heading-l-line);
-        letter-spacing: var(--font-heading-l-track);
-      }
-
       .resume__prose {
         margin: 0 0 var(--space-title-to-paragraph);
         font-size: var(--font-body-l-size);
@@ -343,14 +336,6 @@
 
       .resume__lang strong {
         font-weight: 600;
-        color: var(--color-text);
-      }
-
-      .resume__tools-label {
-        margin: var(--space-title-to-content) 0 8px;
-        font-size: var(--font-body-s-size);
-        font-weight: 600;
-        line-height: var(--font-body-s-line);
         color: var(--color-text);
       }
 
@@ -605,20 +590,23 @@
             main.appendChild(ex);
           }
 
-          /* right column: skills (+ tools), certificates, education, languages */
+          /* right column: expertise, tools, certificates, education, languages */
           if (data.skills && (data.skills.items || []).length) {
-            var sk = el("section", "resume__section");
-            sk.appendChild(el("h2", "resume__section-title", "skills"));
-            var skul = el("ul", "resume__list");
+            var expSec = el("section", "resume__section");
+            expSec.appendChild(el("h2", "resume__section-title", "expertise"));
+            var expul = el("ul", "resume__list");
             data.skills.items.forEach(function (t) {
-              skul.appendChild(el("li", null, t));
+              expul.appendChild(el("li", null, t));
             });
-            sk.appendChild(skul);
-            if (data.skills.tools) {
-              sk.appendChild(el("p", "resume__tools-label", data.skills.toolsLabel || "Tools"));
-              sk.appendChild(el("p", "resume__tools", data.skills.tools));
-            }
-            side.appendChild(sk);
+            expSec.appendChild(expul);
+            side.appendChild(expSec);
+          }
+
+          if (data.skills && data.skills.tools) {
+            var toolsSec = el("section", "resume__section");
+            toolsSec.appendChild(el("h2", "resume__section-title", "tools"));
+            toolsSec.appendChild(el("p", "resume__tools", data.skills.tools));
+            side.appendChild(toolsSec);
           }
 
           if (data.certificates && data.certificates.length) {
