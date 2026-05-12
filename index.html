@@ -468,8 +468,8 @@
       <article id="cv" class="resume" aria-live="polite"></article>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
     <script>
       (function () {
         var ICONS = {
@@ -700,9 +700,13 @@
         }
 
         btnPdf.addEventListener("click", function () {
-          var JsPDF = (window.jspdf && window.jspdf.jsPDF) || window.jsPDF;
+          var JsPDF =
+            (window.jspdf && window.jspdf.jsPDF) ||
+            (typeof window.jsPDF === "function" ? window.jsPDF : null);
           if (typeof html2canvas === "undefined" || !JsPDF) {
-            alert("Could not load PDF libraries. Check your connection and refresh the page.");
+            alert(
+              "Could not load PDF libraries (jsPDF / html2canvas). Check your connection, disable strict blockers for this site, or try another browser."
+            );
             return;
           }
 
