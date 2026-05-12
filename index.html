@@ -266,15 +266,18 @@
         color: var(--color-text);
       }
 
+      /* 14px secondary copy: summary, job text, expertise, tools, certs, school names, language levels */
       .resume__prose,
       .resume__job-desc,
       .resume__job-bullets,
       .resume__certs,
       .resume__tools,
-      .resume__list {
-        font-size: var(--font-body-l-size);
-        font-weight: var(--font-body-l-weight);
-        line-height: var(--font-body-l-line);
+      .resume__list,
+      .resume__edu-school,
+      .resume__lang-level {
+        font-size: var(--font-body-s-size);
+        font-weight: var(--font-body-s-weight);
+        line-height: var(--font-body-s-line);
         color: var(--color-text-secondary);
       }
 
@@ -299,13 +302,13 @@
         margin-bottom: 0;
       }
 
-      /* 16px title style: employers, degree lines, language names */
+      /* 18px title style: employers, degree lines, language names (e.g. Georgian, English) */
       .resume__job-title,
       .resume__edu-degree,
       .resume__lang strong {
-        font-size: var(--font-body-l-size);
-        font-weight: 600;
-        line-height: var(--font-body-l-line);
+        font-size: var(--font-title-m-size);
+        font-weight: var(--font-title-m-weight);
+        line-height: var(--font-title-m-line);
         letter-spacing: var(--font-title-m-track);
         color: var(--color-text);
       }
@@ -328,19 +331,12 @@
 
       .resume__edu-school {
         margin: 0;
-        font-size: var(--font-body-s-size);
-        font-weight: var(--font-body-s-weight);
-        line-height: var(--font-body-s-line);
-        color: var(--color-text-secondary);
       }
 
       .resume__lang {
         list-style: none;
         margin: 0;
         padding: 0;
-        font-size: var(--font-body-m-size);
-        line-height: var(--font-body-m-line);
-        color: var(--color-text-secondary);
       }
 
       .resume__lang li {
@@ -622,7 +618,7 @@
               var li = el("li");
               var s = el("strong", null, L.name || "");
               li.appendChild(s);
-              li.appendChild(document.createTextNode(" — " + (L.level || "")));
+              li.appendChild(el("span", "resume__lang-level", " — " + (L.level || "")));
               lul.appendChild(li);
             });
             lang.appendChild(lul);
