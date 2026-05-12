@@ -1,4 +1,4 @@
-очу щоб це було сторінкою на вебі <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="uk">
   <head>
     <meta charset="utf-8" />
@@ -281,6 +281,8 @@
         text-transform: uppercase;
         letter-spacing: 0.14em;
         color: var(--accent-doc);
+        break-after: avoid;
+        page-break-after: avoid;
       }
 
       #cv h2:first-of-type {
@@ -293,6 +295,31 @@
         font-weight: 600;
         color: var(--paper-text);
         letter-spacing: -0.02em;
+        break-after: avoid;
+        page-break-after: avoid;
+      }
+
+      #cv table.lang,
+      #cv table.lang thead,
+      #cv table.lang tbody {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      #cv .contacts {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      /* Під час генерації PDF (клас додає скрипт) */
+      #cv.is-pdf-export::before {
+        display: none !important;
+      }
+
+      #cv.is-pdf-export {
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        overflow: visible !important;
       }
 
       #cv .period {
@@ -634,7 +661,7 @@
           var nameEl = cv.querySelector(".name");
           var raw = nameEl ? nameEl.textContent.trim() : "CV";
           var cleaned = raw.replace(/[^\p{L}\p{N}\s-]+/gu, "").replace(/\s+/g, "_");
-          return (cleaned || "CV") + ".pdf";
+          return (cleaned || "CV") + "_CV.pdf";
         }
 
         btnPdf.addEventListener("click", function () {
@@ -649,28 +676,51 @@
           var name = safeFilename();
 
           var opt = {
-            margin: [10, 12, 10, 12],
+            margin: [12, 14, 14, 14],
             filename: name,
-            image: { type: "jpeg", quality: 0.96 },
+            image: { type: "jpeg", quality: 0.98 },
             html2canvas: {
               scale: 2,
               useCORS: true,
               letterRendering: true,
+              logging: false,
+              backgroundColor: "#fafbfc",
+              onclone: function (clonedDoc) {
+                var node = clonedDoc.getElementById("cv");
+                if (node) {
+                  node.style.boxShadow = "none";
+                  node.style.borderRadius = "0";
+                  node.style.color = "#0f172a";
+                  node.style.webkitFontSmoothing = "antialiased";
+                }
+              },
             },
-            jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-            pagebreak: { mode: ["avoid-all", "css", "legacy"] },
+            jsPDF: {
+              unit: "mm",
+              format: "a4",
+              orientation: "portrait",
+              compress: true,
+            },
+            pagebreak: {
+              mode: ["avoid-all", "css", "legacy"],
+              avoid: ["tr", "thead", "tbody", ".contacts"],
+            },
           };
 
-          html2pdf()
-            .set(opt)
-            .from(cv)
-            .save()
+          cv.classList.add("is-pdf-export");
+
+          document.fonts.ready
+            .catch(function () {})
+            .then(function () {
+              return html2pdf().set(opt).from(cv).save();
+            })
             .catch(function () {
               window.alert(
                 "Something went wrong while creating the PDF. Please try again."
               );
             })
             .finally(function () {
+              cv.classList.remove("is-pdf-export");
               btnPdf.disabled = false;
             });
         });
