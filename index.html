@@ -264,12 +264,20 @@
         color: var(--color-text);
       }
 
-      .resume__prose {
-        margin: 0 0 var(--space-title-to-paragraph);
+      .resume__prose,
+      .resume__job-desc,
+      .resume__job-bullets,
+      .resume__certs,
+      .resume__tools,
+      .resume__list {
         font-size: var(--font-body-l-size);
         font-weight: var(--font-body-l-weight);
         line-height: var(--font-body-l-line);
         color: var(--color-text-secondary);
+      }
+
+      .resume__prose {
+        margin: 0 0 var(--space-title-to-paragraph);
       }
 
       .resume__prose:last-child {
@@ -279,10 +287,6 @@
       .resume__list {
         margin: 0;
         padding-left: 1.1em;
-        font-size: var(--font-body-m-size);
-        font-weight: var(--font-body-m-weight);
-        line-height: var(--font-body-m-line);
-        color: var(--color-text-secondary);
       }
 
       .resume__list li {
@@ -307,9 +311,9 @@
 
       .resume__edu-degree {
         margin: 0 0 4px;
-        font-size: var(--font-body-s-size);
+        font-size: var(--font-body-l-size);
         font-weight: 600;
-        line-height: var(--font-body-s-line);
+        line-height: var(--font-body-l-line);
         color: var(--color-text);
       }
 
@@ -335,25 +339,19 @@
       }
 
       .resume__lang strong {
+        font-size: var(--font-body-l-size);
         font-weight: 600;
+        line-height: var(--font-body-l-line);
         color: var(--color-text);
       }
 
       .resume__tools {
         margin: 0;
-        font-size: var(--font-body-s-size);
-        font-weight: var(--font-body-s-weight);
-        line-height: var(--font-body-s-line);
-        color: var(--color-text-secondary);
       }
 
       .resume__certs {
         margin: 0;
         padding-left: 1.1em;
-        font-size: var(--font-body-s-size);
-        font-weight: var(--font-body-s-weight);
-        line-height: var(--font-body-s-line);
-        color: var(--color-text-secondary);
       }
 
       .resume__certs li {
@@ -385,16 +383,8 @@
         color: var(--color-text-secondary);
       }
 
-      .resume__job-meta span + span::before {
-        content: " · ";
-      }
-
       .resume__job-desc {
         margin: 0 0 var(--space-paragraph-to-bullets);
-        font-size: var(--font-body-m-size);
-        font-weight: var(--font-body-m-weight);
-        line-height: var(--font-body-m-line);
-        color: var(--color-text-secondary);
       }
 
       .resume__job-desc:empty {
@@ -404,10 +394,6 @@
       .resume__job-bullets {
         margin: 0;
         padding-left: 1.1em;
-        font-size: var(--font-body-m-size);
-        font-weight: var(--font-body-m-weight);
-        line-height: var(--font-body-m-line);
-        color: var(--color-text-secondary);
       }
 
       .resume__job-bullets li {
@@ -564,16 +550,14 @@
             data.experience.forEach(function (job) {
               var jobEl = el("div", "resume__job");
               var head = el("div", "resume__job-head");
-              head.appendChild(el("h3", "resume__job-title", job.position || ""));
-              var meta = el("p", "resume__job-meta");
               if (job.company) {
-                var sp = el("span", null, job.company);
-                meta.appendChild(sp);
+                head.appendChild(el("h3", "resume__job-title", job.company));
               }
               if (job.period) {
+                var meta = el("p", "resume__job-meta");
                 meta.appendChild(el("span", null, job.period));
+                head.appendChild(meta);
               }
-              head.appendChild(meta);
               jobEl.appendChild(head);
               if (job.description) {
                 jobEl.appendChild(el("p", "resume__job-desc", job.description));
