@@ -23,7 +23,7 @@ python3 -m http.server 8080
    git add .
    git commit -m "Initial CV site"
    git branch -M main
-   git remote add origin https://github.com/ВАШ_НІК/НАЗВА_РЕПО.git
+   git remote add origin https://github.com/vssvt/Ilia-Guruli-IT-Project-Manager.git
    git push -u origin main
    ```
 
@@ -33,7 +33,7 @@ python3 -m http.server 8080
 
 4. Через 1–2 хвилини сайт буде за адресою:
 
-   `https://ВАШ_НІК.github.io/НАЗВА_РЕПО/`
+   **https://vssvt.github.io/Ilia-Guruli-IT-Project-Manager/**
 
    Це посилання можна вказувати в резюме та в LinkedIn.
 
