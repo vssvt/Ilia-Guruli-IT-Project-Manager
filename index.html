@@ -3,39 +3,83 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Ilia Guruli — Senior IT Project Manager</title>
+    <title>Resume</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
       rel="stylesheet"
     />
     <style>
       :root {
-        --page-bg: #e8e5df;
-        --toolbar-bg: rgba(30, 28, 26, 0.92);
-        --toolbar-text: #f5f2eb;
-        --toolbar-muted: #b8b3aa;
-        --cv-bg: #f9f7f3;
-        --cv-ink: #111111;
-        --cv-muted: #5a5856;
-        --cv-rule: #1a1a1a;
-        --cv-border: #dcd7cf;
-        --accent-btn: #0f766e;
-        --max-cv: 60rem;
+        --color-text: #111111;
+        --color-text-secondary: #6f6f6f;
+        --color-divider: #1a1a1a;
+        --color-bg: #ffffff;
+
+        --font-display-xl-size: 56px;
+        --font-display-xl-weight: 800;
+        --font-display-xl-line: 56px;
+        --font-display-xl-track: -0.02em;
+
+        --font-heading-l-size: 36px;
+        --font-heading-l-weight: 700;
+        --font-heading-l-line: 40px;
+        --font-heading-l-track: -0.01em;
+
+        --font-heading-m-size: 28px;
+        --font-heading-m-weight: 700;
+        --font-heading-m-line: 32px;
+        --font-heading-m-track: -0.01em;
+
+        --font-title-l-size: 22px;
+        --font-title-l-weight: 600;
+        --font-title-l-line: 30px;
+        --font-title-l-track: -0.01em;
+
+        --font-title-m-size: 18px;
+        --font-title-m-weight: 600;
+        --font-title-m-line: 26px;
+        --font-title-m-track: -0.005em;
+
+        --font-body-l-size: 16px;
+        --font-body-l-weight: 400;
+        --font-body-l-line: 26px;
+
+        --font-body-m-size: 15px;
+        --font-body-m-weight: 400;
+        --font-body-m-line: 24px;
+
+        --font-body-s-size: 14px;
+        --font-body-s-weight: 400;
+        --font-body-s-line: 22px;
+
+        --font-caption-size: 13px;
+        --font-caption-weight: 400;
+        --font-caption-line: 18px;
+
+        --space-title-to-content: 24px;
+        --space-title-to-paragraph: 12px;
+        --space-paragraph-to-bullets: 8px;
+        --space-section: 64px;
+        --space-section-max: 72px;
+        --space-grid: 48px;
+        --page-pad-x: clamp(24px, 5vw, 72px);
+        --page-pad-y: clamp(48px, 8vw, 88px);
+        --resume-max: 1120px;
       }
 
-      * {
+      *,
+      *::before,
+      *::after {
         box-sizing: border-box;
       }
 
       body {
         margin: 0;
-        font-family: "Inter", system-ui, -apple-system, sans-serif;
-        background: var(--page-bg);
-        color: var(--cv-ink);
-        line-height: 1.5;
-        min-height: 100vh;
+        font-family: "Inter", system-ui, sans-serif;
+        background: var(--color-bg);
+        color: var(--color-text);
         -webkit-font-smoothing: antialiased;
       }
 
@@ -43,574 +87,592 @@
         position: sticky;
         top: 0;
         z-index: 10;
-        padding: 0.65rem clamp(1rem, 3vw, 1.75rem);
-        background: var(--toolbar-bg);
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      }
-
-      .toolbar-inner {
-        max-width: var(--max-cv);
-        margin: 0 auto;
         display: flex;
-        flex-wrap: wrap;
-        gap: 0.75rem;
-        align-items: center;
-        justify-content: space-between;
+        justify-content: flex-end;
+        padding: 16px var(--page-pad-x);
+        background: var(--color-bg);
+        border-bottom: 1px solid var(--color-divider);
       }
 
-      .toolbar h1 {
-        margin: 0;
-        font-size: 0.8125rem;
-        font-weight: 600;
-        color: var(--toolbar-text);
-        letter-spacing: 0.02em;
-      }
-
-      .btn-primary {
+      .btn-pdf {
         font-family: inherit;
-        font-size: 0.75rem;
+        font-size: var(--font-caption-size);
         font-weight: 600;
+        line-height: var(--font-caption-line);
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        padding: 10px 18px;
+        border: 1px solid var(--color-divider);
+        background: var(--color-bg);
+        color: var(--color-text);
         cursor: pointer;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 6px;
-        padding: 0.45rem 0.9rem;
-        background: var(--accent-btn);
-        color: #f0fdf9;
       }
 
-      .btn-primary:hover {
-        filter: brightness(1.06);
+      .btn-pdf:hover {
+        background: var(--color-text);
+        color: var(--color-bg);
       }
 
-      .btn-primary:focus-visible {
-        outline: 2px solid #5eead4;
+      .btn-pdf:focus-visible {
+        outline: 2px solid var(--color-text);
         outline-offset: 2px;
       }
 
-      .btn-primary:disabled {
-        opacity: 0.55;
+      .btn-pdf:disabled {
+        opacity: 0.45;
         cursor: wait;
       }
 
-      .wrap {
-        max-width: var(--max-cv);
+      .page {
+        max-width: var(--resume-max);
         margin: 0 auto;
-        padding: 1.5rem clamp(1rem, 3vw, 1.75rem) 3rem;
+        padding: 0 var(--page-pad-x) var(--page-pad-y);
       }
 
-      /* Editorial CV */
-      #cv.cv-editorial {
-        background: var(--cv-bg);
-        color: var(--cv-ink);
-        border: 1px solid var(--cv-border);
-        border-radius: 2px;
-        padding: 2.25rem clamp(1.25rem, 3vw, 2.75rem) 2rem;
-        box-shadow: 0 1px 0 rgba(255, 255, 255, 0.65) inset;
+      .resume {
+        padding-top: 8px;
       }
 
-      .cv-top {
+      .resume__header {
         display: grid;
         grid-template-columns: 1fr auto 1fr;
-        gap: 1rem 1.5rem;
+        gap: 24px 32px;
         align-items: start;
-        margin-bottom: 2rem;
-        padding-bottom: 1.25rem;
-        border-bottom: 1px solid #c4bfb6;
-        break-inside: avoid;
-        page-break-inside: avoid;
+        padding-bottom: var(--space-section-max);
+        border-bottom: 1px solid var(--color-divider);
       }
 
-      .cv-top-name .name {
+      .resume__name {
         margin: 0;
-        font-size: clamp(1.75rem, 4vw, 2.35rem);
-        font-weight: 700;
-        letter-spacing: -0.03em;
-        line-height: 1.05;
-        color: var(--cv-ink);
+        font-size: var(--font-display-xl-size);
+        font-weight: var(--font-display-xl-weight);
+        line-height: var(--font-display-xl-line);
+        letter-spacing: var(--font-display-xl-track);
+        color: var(--color-text);
       }
 
-      .cv-top-role {
+      .resume__title {
+        margin: 0;
         text-align: center;
         align-self: center;
-        font-size: 0.7rem;
-        font-weight: 600;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: var(--cv-muted);
-        max-width: 14rem;
-        line-height: 1.35;
+        font-size: var(--font-title-m-size);
+        font-weight: var(--font-title-m-weight);
+        line-height: var(--font-title-m-line);
+        letter-spacing: var(--font-title-m-track);
+        color: var(--color-text-secondary);
+        max-width: 16rem;
       }
 
-      .cv-top-contact {
+      .resume__contact {
         justify-self: end;
         text-align: right;
-        font-size: 0.75rem;
-        line-height: 1.55;
-        color: var(--cv-muted);
-      }
-
-      .cv-contact-row {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        gap: 0.4rem;
-        margin-bottom: 0.15rem;
-      }
-
-      .cv-contact-row svg {
-        flex-shrink: 0;
-        width: 0.85rem;
-        height: 0.85rem;
-        color: #6f6b66;
-      }
-
-      .cv-contact-row a {
-        color: var(--cv-muted);
-        text-decoration: none;
-      }
-
-      .cv-contact-row a:hover {
-        color: var(--cv-ink);
-        text-decoration: underline;
-      }
-
-      .cv-grid {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(0, 2.05fr);
-        gap: 2.25rem 2.75rem;
-        align-items: start;
-      }
-
-      .cv-block h2 {
-        margin: 0 0 0.65rem;
-        padding-bottom: 0.35rem;
-        border-bottom: 1px solid var(--cv-rule);
-        font-size: 0.8125rem;
-        font-weight: 700;
-        text-transform: lowercase;
-        letter-spacing: 0.06em;
-        color: var(--cv-ink);
-        break-after: avoid;
-        page-break-after: avoid;
-      }
-
-      .cv-block + .cv-block {
-        margin-top: 1.65rem;
-      }
-
-      .cv-sidebar p.lead {
-        margin: 0;
-        font-size: 0.8125rem;
-        line-height: 1.6;
-        color: var(--cv-muted);
-      }
-
-      .cv-sidebar p.lead-follow {
-        margin-top: 0.65rem;
-      }
-
-      .edu-item + .edu-item {
-        margin-top: 1rem;
-      }
-
-      .edu-meta {
-        margin: 0 0 0.15rem;
-        font-size: 0.72rem;
-        color: var(--cv-muted);
-      }
-
-      .edu-title {
-        margin: 0 0 0.15rem;
-        font-size: 0.84rem;
-        font-weight: 600;
-        color: var(--cv-ink);
-        line-height: 1.35;
-      }
-
-      .edu-sub {
-        margin: 0;
-        font-size: 0.78rem;
-        color: var(--cv-muted);
-        line-height: 1.4;
-      }
-
-      .lang-simple {
         list-style: none;
         margin: 0;
         padding: 0;
-        font-size: 0.8125rem;
-        line-height: 1.55;
-        color: var(--cv-muted);
       }
 
-      .lang-simple li {
-        margin-bottom: 0.35rem;
+      .resume__contact li {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 8px;
+        margin-bottom: 6px;
+        font-size: var(--font-caption-size);
+        font-weight: var(--font-caption-weight);
+        line-height: var(--font-caption-line);
+        color: var(--color-text-secondary);
       }
 
-      .lang-simple strong {
-        color: var(--cv-ink);
-        font-weight: 600;
+      .resume__contact li:last-child {
+        margin-bottom: 0;
       }
 
-      .skills-block ul {
+      .resume__contact a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .resume__contact a:hover {
+        text-decoration: underline;
+        color: var(--color-text);
+      }
+
+      .resume__contact svg {
+        flex-shrink: 0;
+        width: 14px;
+        height: 14px;
+        color: var(--color-text-secondary);
+      }
+
+      .resume__grid {
+        display: grid;
+        grid-template-columns: minmax(0, 35%) minmax(0, 65%);
+        gap: var(--space-grid) 56px;
+        align-items: start;
+        padding-top: var(--space-section-max);
+      }
+
+      .resume__section {
+        margin-bottom: var(--space-section);
+      }
+
+      .resume__section:last-child {
+        margin-bottom: 0;
+      }
+
+      .resume__section-title {
+        margin: 0 0 var(--space-title-to-content);
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--color-divider);
+        font-size: var(--font-heading-m-size);
+        font-weight: var(--font-heading-m-weight);
+        line-height: var(--font-heading-m-line);
+        letter-spacing: var(--font-heading-m-track);
+        text-transform: lowercase;
+        color: var(--color-text);
+      }
+
+      .resume__main .resume__section-title {
+        font-size: var(--font-heading-l-size);
+        font-weight: var(--font-heading-l-weight);
+        line-height: var(--font-heading-l-line);
+        letter-spacing: var(--font-heading-l-track);
+      }
+
+      .resume__prose {
+        margin: 0 0 var(--space-title-to-paragraph);
+        font-size: var(--font-body-l-size);
+        font-weight: var(--font-body-l-weight);
+        line-height: var(--font-body-l-line);
+        color: var(--color-text-secondary);
+      }
+
+      .resume__prose:last-child {
+        margin-bottom: 0;
+      }
+
+      .resume__list {
         margin: 0;
-        padding-left: 1rem;
-        font-size: 0.8125rem;
-        line-height: 1.5;
-        color: var(--cv-muted);
+        padding-left: 1.1em;
+        font-size: var(--font-body-m-size);
+        font-weight: var(--font-body-m-weight);
+        line-height: var(--font-body-m-line);
+        color: var(--color-text-secondary);
       }
 
-      .skills-block li {
-        margin-bottom: 0.3rem;
+      .resume__list li {
+        margin-bottom: 6px;
       }
 
-      .tools-line {
-        margin: 0.75rem 0 0;
-        font-size: 0.75rem;
-        line-height: 1.55;
-        color: var(--cv-muted);
+      .resume__list li:last-child {
+        margin-bottom: 0;
       }
 
-      .cert-list-compact {
-        margin: 0;
-        padding-left: 1rem;
-        font-size: 0.72rem;
-        line-height: 1.45;
-        color: var(--cv-muted);
+      .resume__edu-block + .resume__edu-block {
+        margin-top: var(--space-title-to-content);
       }
 
-      .cert-list-compact li {
-        margin-bottom: 0.35rem;
+      .resume__edu-period {
+        margin: 0 0 4px;
+        font-size: var(--font-caption-size);
+        font-weight: var(--font-caption-weight);
+        line-height: var(--font-caption-line);
+        color: var(--color-text-secondary);
       }
 
-      .cert-list-compact strong {
-        color: var(--cv-ink);
+      .resume__edu-degree {
+        margin: 0 0 4px;
+        font-size: var(--font-body-s-size);
         font-weight: 600;
+        line-height: var(--font-body-s-line);
+        color: var(--color-text);
       }
 
-      .cv-main h3 {
-        margin: 1.15rem 0 0.2rem;
-        font-size: 0.875rem;
-        font-weight: 700;
-        color: var(--cv-ink);
-        line-height: 1.3;
-        break-after: avoid;
-        page-break-after: avoid;
+      .resume__edu-school {
+        margin: 0;
+        font-size: var(--font-body-s-size);
+        font-weight: var(--font-body-s-weight);
+        line-height: var(--font-body-s-line);
+        color: var(--color-text-secondary);
       }
 
-      .cv-main .cv-block > h2 + h3 {
-        margin-top: 0.65rem;
+      .resume__lang {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        font-size: var(--font-body-m-size);
+        line-height: var(--font-body-m-line);
+        color: var(--color-text-secondary);
       }
 
-      .cv-main .period {
-        margin: 0 0 0.45rem;
-        font-size: 0.75rem;
-        color: var(--cv-muted);
-        font-style: normal;
+      .resume__lang li {
+        margin-bottom: 6px;
       }
 
-      .cv-main ul {
-        margin: 0 0 0.15rem;
-        padding-left: 1rem;
+      .resume__lang strong {
+        font-weight: 600;
+        color: var(--color-text);
       }
 
-      .cv-main li {
-        margin-bottom: 0.3rem;
-        font-size: 0.8125rem;
-        line-height: 1.5;
-        color: var(--cv-muted);
+      .resume__tools-label {
+        margin: var(--space-title-to-content) 0 8px;
+        font-size: var(--font-body-s-size);
+        font-weight: 600;
+        line-height: var(--font-body-s-line);
+        color: var(--color-text);
       }
 
-      .key-projects-label {
-        margin: 0.35rem 0 0.25rem;
-        font-size: 0.68rem;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--cv-ink);
+      .resume__tools {
+        margin: 0;
+        font-size: var(--font-body-s-size);
+        font-weight: var(--font-body-s-weight);
+        line-height: var(--font-body-s-line);
+        color: var(--color-text-secondary);
       }
 
-      .cv-main li .solution {
-        font-size: 0.78rem;
-        color: var(--cv-muted);
+      .resume__certs {
+        margin: 0;
+        padding-left: 1.1em;
+        font-size: var(--font-body-s-size);
+        font-weight: var(--font-body-s-weight);
+        line-height: var(--font-body-s-line);
+        color: var(--color-text-secondary);
       }
 
-      .footer-note {
-        margin-top: 2rem;
-        font-size: 0.72rem;
-        color: var(--cv-muted);
-        font-style: italic;
+      .resume__certs li {
+        margin-bottom: 6px;
+      }
+
+      .resume__job + .resume__job {
+        margin-top: var(--space-section);
+      }
+
+      .resume__job-head {
+        margin-bottom: var(--space-title-to-paragraph);
+      }
+
+      .resume__job-title {
+        margin: 0 0 4px;
+        font-size: var(--font-title-l-size);
+        font-weight: var(--font-title-l-weight);
+        line-height: var(--font-title-l-line);
+        letter-spacing: var(--font-title-l-track);
+        color: var(--color-text);
+      }
+
+      .resume__job-meta {
+        margin: 0;
+        font-size: var(--font-body-s-size);
+        font-weight: var(--font-body-s-weight);
+        line-height: var(--font-body-s-line);
+        color: var(--color-text-secondary);
+      }
+
+      .resume__job-meta span + span::before {
+        content: " · ";
+      }
+
+      .resume__job-desc {
+        margin: 0 0 var(--space-paragraph-to-bullets);
+        font-size: var(--font-body-m-size);
+        font-weight: var(--font-body-m-weight);
+        line-height: var(--font-body-m-line);
+        color: var(--color-text-secondary);
+      }
+
+      .resume__job-desc:empty {
+        display: none;
+      }
+
+      .resume__job-bullets {
+        margin: 0;
+        padding-left: 1.1em;
+        font-size: var(--font-body-m-size);
+        font-weight: var(--font-body-m-weight);
+        line-height: var(--font-body-m-line);
+        color: var(--color-text-secondary);
+      }
+
+      .resume__job-bullets li {
+        margin-bottom: 6px;
+      }
+
+      .resume__footer {
+        margin-top: var(--space-section-max);
+        font-size: var(--font-caption-size);
+        font-weight: var(--font-caption-weight);
+        line-height: var(--font-caption-line);
+        color: var(--color-text-secondary);
       }
 
       #cv.is-pdf-export {
-        box-shadow: none !important;
-        border-radius: 0 !important;
         overflow: visible !important;
       }
 
       @media print {
-        body {
-          background: #fff;
-        }
-
         .toolbar {
           display: none !important;
         }
 
-        .wrap {
-          padding: 0;
+        .page {
           max-width: none;
-        }
-
-        #cv.cv-editorial {
-          border: none;
-          padding: 1.2cm 1.35cm;
-          box-shadow: none;
+          padding: 0;
         }
       }
 
-      @media (max-width: 820px) {
-        .cv-top {
+      @media (max-width: 800px) {
+        .resume__header {
           grid-template-columns: 1fr;
-          text-align: left;
         }
 
-        .cv-top-role {
+        .resume__title {
           text-align: left;
           max-width: none;
         }
 
-        .cv-top-contact {
+        .resume__contact li {
+          justify-content: flex-start;
+        }
+
+        .resume__contact {
           justify-self: start;
           text-align: left;
         }
 
-        .cv-contact-row {
-          justify-content: flex-start;
+        .resume__grid {
+          grid-template-columns: 1fr;
         }
 
-        .cv-grid {
-          grid-template-columns: 1fr;
+        .resume__name {
+          font-size: clamp(40px, 10vw, var(--font-display-xl-size));
+          line-height: 1;
         }
       }
     </style>
   </head>
   <body>
     <header class="toolbar">
-      <div class="toolbar-inner">
-        <h1>Ilia Guruli · CV</h1>
-        <div class="actions">
-          <button type="button" class="btn-primary" id="btn-pdf">Download PDF</button>
-        </div>
-      </div>
+      <button type="button" class="btn-pdf" id="btn-pdf">Download PDF</button>
     </header>
 
-    <div class="wrap">
-      <article id="cv" class="cv-editorial" lang="en">
-        <header class="cv-top">
-          <div class="cv-top-name">
-            <h1 class="name">Ilia Guruli</h1>
-          </div>
-          <div class="cv-top-role">Senior IT Project Manager</div>
-          <div class="cv-top-contact">
-            <div class="cv-contact-row">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                <circle cx="12" cy="10" r="3" />
-              </svg>
-              <span>Remote, Tbilisi, Georgia</span>
-            </div>
-            <div class="cv-contact-row">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <rect width="20" height="16" x="2" y="4" rx="2" />
-                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-              </svg>
-              <a href="mailto:iliaguruli5@gmail.com">iliaguruli5@gmail.com</a>
-            </div>
-            <div class="cv-contact-row">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-              </svg>
-              <a href="tel:+995574800757">+995 574 800 757</a>
-            </div>
-            <div class="cv-contact-row">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width: 0.75rem; height: 0.75rem">
-                <path
-                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
-                />
-              </svg>
-              <a href="https://www.linkedin.com/in/ilia-guruli-a8babb10a" target="_blank" rel="noopener noreferrer"
-                >LinkedIn</a
-              >
-            </div>
-          </div>
-        </header>
-
-        <div class="cv-grid">
-          <aside class="cv-sidebar">
-            <section class="cv-block">
-              <h2>about</h2>
-              <p class="lead">
-                Senior IT Project Manager with strong experience leading Microsoft Dynamics 365 Business Central (BC)
-                ERP implementations in retail, banking, and international environments. Experienced in managing ERP
-                rollouts, cross-functional teams, and enterprise digital transformation projects.
-              </p>
-              <p class="lead lead-follow">
-                Proven track record delivering BC solutions including Finance, HR &amp; Payroll, Sales/POS, Purchase,
-                and Warehouse Management modules for large-scale organizations and multinational projects.
-              </p>
-            </section>
-
-            <section class="cv-block">
-              <h2>education</h2>
-              <div class="edu-item">
-                <p class="edu-meta">2016–2018</p>
-                <p class="edu-title">Master’s in Informatics and Management Systems</p>
-                <p class="edu-sub">Georgian Technical University</p>
-              </div>
-              <div class="edu-item">
-                <p class="edu-meta">2011–2016</p>
-                <p class="edu-title">Bachelor’s in Informatics, Mathematics and Natural Sciences</p>
-                <p class="edu-sub">St. Andrew the First-Called Georgian University of the Patriarchate of Georgia</p>
-              </div>
-            </section>
-
-            <section class="cv-block">
-              <h2>languages</h2>
-              <ul class="lang-simple">
-                <li><strong>Georgian</strong> — Native</li>
-                <li><strong>English</strong> — Fluent</li>
-              </ul>
-            </section>
-
-            <section class="cv-block skills-block">
-              <h2>skills</h2>
-              <ul>
-                <li>Remote and distributed project team management</li>
-                <li>Team leadership and stakeholder alignment</li>
-                <li>Agile methodologies</li>
-                <li>Business analysis and process modelling (use cases, user stories, diagrams)</li>
-                <li>Planning, milestones, scope, schedule, and cost estimation</li>
-                <li>Requirements gathering, documentation, and specifications</li>
-                <li>Bridging technical and business perspectives</li>
-                <li>Quality control of deliverables</li>
-                <li>Risk mitigation (financial and legal)</li>
-                <li>Web development fundamentals (C#, C++, Java, JavaScript, CSS, HTML)</li>
-              </ul>
-              <p class="tools-line">
-                <strong style="color: var(--cv-ink)">Tools:</strong>
-                Microsoft Office · Microsoft Project · Google Analytics · Hotjar · Trello · Jira · Microsoft SharePoint ·
-                Miro · Figma · Zeplin · Postman · Swagger · TestRail
-              </p>
-            </section>
-
-            <section class="cv-block">
-              <h2>certificates</h2>
-              <ul class="cert-list-compact">
-                <li><strong>PSM I</strong> (scrum.org, ID: 728942) — 1 Dec 2021</li>
-                <li><strong>PRINCE2® Foundation</strong> — 15 Jul 2021</li>
-                <li><strong>Business Analysis and Process Management</strong> — 4 Jul 2019</li>
-                <li><strong>Project Management Training</strong> (PMI) — 30 Oct 2018</li>
-                <li><strong>Agile Scrum Fundamental</strong> — 20 Aug 2017</li>
-                <li><strong>CCNA</strong> — 16 Sep 2017</li>
-              </ul>
-            </section>
-          </aside>
-
-          <div class="cv-main">
-            <section class="cv-block">
-              <h2>work experience</h2>
-
-              <h3>Senior IT Project Manager — Prodware Georgia</h3>
-              <p class="period">Oct 2024 – present</p>
-              <p class="key-projects-label">Key projects</p>
-              <ul>
-                <li>
-                  <strong>ICR Company</strong> — retail business ERP transformation.<br />
-                  <span class="solution">Solution: Microsoft Dynamics 365 Business Central + LS Retail</span>
-                </li>
-                <li>
-                  <strong>TBC Bank</strong> — HR &amp; payroll system.<br />
-                  <span class="solution">Solution: Microsoft Dynamics 365 Business Central HR &amp; Payroll</span>
-                </li>
-                <li>
-                  <strong>Prodware International</strong> — implementing a whistleblowing platform across Prodware
-                  branches (France, Germany, Spain, the Netherlands, and other countries).
-                </li>
-              </ul>
-
-              <h3>IT Project Manager — PSP Insurance</h3>
-              <p class="period">Jan 2024 – Jun 2025 · 1 yr 6 mos · full-time, on-site</p>
-              <ul>
-                <li>Insurance core system change programme</li>
-              </ul>
-
-              <h3>IT Project Manager — Aldagi Insurance Company</h3>
-              <p class="period">Jan 2022 – Nov 2023 · 1 yr 11 mos · full-time, hybrid (Georgia)</p>
-              <ul>
-                <li>Aldagi ecosystem mobile app (Android, iOS)</li>
-              </ul>
-
-              <h3>IT Project Manager — National Bank of Georgia</h3>
-              <p class="period">Aug 2018 – Jan 2022 · 3 yrs 6 mos · full-time · Tbilisi, Georgia</p>
-              <ul>
-                <li>National Bank of Georgia corporate website</li>
-                <li>Financial education portal (website)</li>
-              </ul>
-
-              <h3>Quality Assurance Manager / IT Analyst — TEGETA MOTORS</h3>
-              <p class="period">Mar 2017 – Aug 2018 · full-time</p>
-              <ul>
-                <li>Online shop, corporate websites, corporate reporting system</li>
-                <li>Best Western Sairme, Sairme Resort, Segrex Auto Gallery, InterAuto corporate sites</li>
-                <li>My Car History (Tegeta, Toyota), queue management, SMS platform</li>
-                <li>Service reservation (Tegeta, Toyota), academy, Tegeta account, local purchase software</li>
-              </ul>
-
-              <h3>Consulting — Metad (Ori Nabiji)</h3>
-              <p class="period">Oct 2015 – Feb 2017 · consulting (mobile &amp; web)</p>
-              <ul>
-                <li>Online shop app (Android, iOS)</li>
-                <li>Online shop (website)</li>
-                <li>Courier app (Android, iOS)</li>
-                <li>Loyalty system app (Android, iOS)</li>
-                <li>Operator app (Android)</li>
-              </ul>
-            </section>
-
-            <p class="footer-note">Last updated: May 2026</p>
-          </div>
-        </div>
-      </article>
+    <div class="page">
+      <article id="cv" class="resume" aria-live="polite"></article>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
       (function () {
-        var cv = document.getElementById("cv");
+        var ICONS = {
+          location:
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
+          email:
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>',
+          phone:
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>',
+          linkedin:
+            '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 4.125 0 2.062 2.062 0 0 1-4.125 0zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>',
+        };
+
+        function el(tag, className, text) {
+          var n = document.createElement(tag);
+          if (className) n.className = className;
+          if (text != null && text !== "") n.textContent = text;
+          return n;
+        }
+
+        function renderContactRow(row) {
+          var li = el("li");
+          li.innerHTML = ICONS[row.icon] || "";
+          if (row.href) {
+            var a = el("a");
+            a.href = row.href;
+            a.textContent = row.text;
+            if (row.external) {
+              a.target = "_blank";
+              a.rel = "noopener noreferrer";
+            }
+            li.appendChild(a);
+          } else {
+            li.appendChild(document.createTextNode(row.text));
+          }
+          return li;
+        }
+
+        function renderResume(data) {
+          var root = document.getElementById("cv");
+          root.innerHTML = "";
+
+          var header = el("header", "resume__header");
+
+          var nameEl = el("h1", "resume__name", data.name || "");
+          header.appendChild(nameEl);
+
+          var titleEl = el("p", "resume__title", data.title || "");
+          header.appendChild(titleEl);
+
+          var ul = el("ul", "resume__contact");
+          (data.contact && data.contact.rows ? data.contact.rows : []).forEach(function (row) {
+            ul.appendChild(renderContactRow(row));
+          });
+          header.appendChild(ul);
+
+          root.appendChild(header);
+
+          var grid = el("div", "resume__grid");
+          var side = el("aside", "resume__sidebar");
+          var main = el("div", "resume__main");
+
+          /* about */
+          if (data.about && data.about.length) {
+            var sec = el("section", "resume__section");
+            sec.appendChild(el("h2", "resume__section-title", "about"));
+            data.about.forEach(function (p) {
+              sec.appendChild(el("p", "resume__prose", p));
+            });
+            side.appendChild(sec);
+          }
+
+          /* education */
+          if (data.education && data.education.length) {
+            var ed = el("section", "resume__section");
+            ed.appendChild(el("h2", "resume__section-title", "education"));
+            data.education.forEach(function (item) {
+              var block = el("div", "resume__edu-block");
+              block.appendChild(el("p", "resume__edu-period", item.period || ""));
+              block.appendChild(el("p", "resume__edu-degree", item.degree || ""));
+              block.appendChild(el("p", "resume__edu-school", item.institution || ""));
+              ed.appendChild(block);
+            });
+            side.appendChild(ed);
+          }
+
+          /* languages */
+          if (data.languages && data.languages.length) {
+            var lang = el("section", "resume__section");
+            lang.appendChild(el("h2", "resume__section-title", "languages"));
+            var lul = el("ul", "resume__lang");
+            data.languages.forEach(function (L) {
+              var li = el("li");
+              var s = el("strong", null, L.name || "");
+              li.appendChild(s);
+              li.appendChild(document.createTextNode(" — " + (L.level || "")));
+              lul.appendChild(li);
+            });
+            lang.appendChild(lul);
+            side.appendChild(lang);
+          }
+
+          /* skills */
+          if (data.skills && (data.skills.items || []).length) {
+            var sk = el("section", "resume__section");
+            sk.appendChild(el("h2", "resume__section-title", "skills"));
+            var skul = el("ul", "resume__list");
+            data.skills.items.forEach(function (t) {
+              skul.appendChild(el("li", null, t));
+            });
+            sk.appendChild(skul);
+            if (data.skills.tools) {
+              sk.appendChild(el("p", "resume__tools-label", data.skills.toolsLabel || "Tools"));
+              sk.appendChild(el("p", "resume__tools", data.skills.tools));
+            }
+            side.appendChild(sk);
+          }
+
+          /* certificates */
+          if (data.certificates && data.certificates.length) {
+            var ce = el("section", "resume__section");
+            ce.appendChild(el("h2", "resume__section-title", "certificates"));
+            var cul = el("ul", "resume__certs");
+            data.certificates.forEach(function (c) {
+              cul.appendChild(el("li", null, c));
+            });
+            ce.appendChild(cul);
+            side.appendChild(ce);
+          }
+
+          /* experience */
+          if (data.experience && data.experience.length) {
+            var ex = el("section", "resume__section");
+            ex.appendChild(el("h2", "resume__section-title", "work experience"));
+            data.experience.forEach(function (job) {
+              var jobEl = el("div", "resume__job");
+              var head = el("div", "resume__job-head");
+              head.appendChild(el("h3", "resume__job-title", job.position || ""));
+              var meta = el("p", "resume__job-meta");
+              if (job.company) {
+                var sp = el("span", null, job.company);
+                meta.appendChild(sp);
+              }
+              if (job.period) {
+                meta.appendChild(el("span", null, job.period));
+              }
+              head.appendChild(meta);
+              jobEl.appendChild(head);
+              if (job.description) {
+                jobEl.appendChild(el("p", "resume__job-desc", job.description));
+              }
+              if (job.bullets && job.bullets.length) {
+                var bul = el("ul", "resume__job-bullets");
+                job.bullets.forEach(function (b) {
+                  bul.appendChild(el("li", null, b));
+                });
+                jobEl.appendChild(bul);
+              }
+              ex.appendChild(jobEl);
+            });
+            main.appendChild(ex);
+          }
+
+          grid.appendChild(side);
+          grid.appendChild(main);
+          root.appendChild(grid);
+
+          if (data.footer) {
+            root.appendChild(el("p", "resume__footer", data.footer));
+          }
+
+          document.title = (data.name || "Resume") + (data.title ? " — " + data.title : "");
+        }
+
+        function loadData() {
+          return fetch("cv-data.json", { cache: "no-store" })
+            .then(function (r) {
+              if (!r.ok) throw new Error("cv-data.json");
+              return r.json();
+            })
+            .then(renderResume)
+            .catch(function () {
+              var root = document.getElementById("cv");
+              root.innerHTML =
+                '<p class="resume__prose">Could not load <strong>cv-data.json</strong>. Open this site via a web server or GitHub Pages, or ensure the file is in the same folder as index.html.</p>';
+            });
+        }
+
+        loadData();
+
+        /* PDF */
         var btnPdf = document.getElementById("btn-pdf");
+        var cv = document.getElementById("cv");
 
         function safeFilename() {
-          var nameEl = cv.querySelector(".name");
-          var raw = nameEl ? nameEl.textContent.trim() : "CV";
+          var nameEl = cv.querySelector(".resume__name");
+          var raw = nameEl ? nameEl.textContent.trim() : "Resume";
           var cleaned = raw.replace(/[^\p{L}\p{N}\s-]+/gu, "").replace(/\s+/g, "_");
-          return (cleaned || "CV") + "_CV.pdf";
+          return (cleaned || "Resume") + ".pdf";
         }
 
         btnPdf.addEventListener("click", function () {
           if (typeof html2pdf === "undefined") {
-            window.alert(
-              "Could not load the PDF library. Check your internet connection and try again."
-            );
+            alert("Could not load PDF library. Check your connection.");
             return;
           }
 
           btnPdf.disabled = true;
           var name = safeFilename();
+          cv.classList.add("is-pdf-export");
 
           var opt = {
-            margin: [12, 14, 14, 14],
+            margin: [14, 14, 14, 14],
             filename: name,
             image: { type: "jpeg", quality: 0.98 },
             html2canvas: {
@@ -618,29 +680,15 @@
               useCORS: true,
               letterRendering: true,
               logging: false,
-              backgroundColor: "#f9f7f3",
+              backgroundColor: "#ffffff",
               onclone: function (clonedDoc) {
                 var node = clonedDoc.getElementById("cv");
-                if (node) {
-                  node.style.boxShadow = "none";
-                  node.style.borderRadius = "0";
-                  node.style.color = "#111";
-                }
+                if (node) node.style.color = "#111111";
               },
             },
-            jsPDF: {
-              unit: "mm",
-              format: "a4",
-              orientation: "portrait",
-              compress: true,
-            },
-            pagebreak: {
-              mode: ["avoid-all", "css", "legacy"],
-              avoid: ["tr", "thead", "tbody"],
-            },
+            jsPDF: { unit: "mm", format: "a4", orientation: "portrait", compress: true },
+            pagebreak: { mode: ["avoid-all", "css", "legacy"] },
           };
-
-          cv.classList.add("is-pdf-export");
 
           document.fonts.ready
             .catch(function () {})
@@ -648,7 +696,7 @@
               return html2pdf().set(opt).from(cv).save();
             })
             .catch(function () {
-              window.alert("Something went wrong while creating the PDF. Please try again.");
+              alert("Something went wrong while creating the PDF.");
             })
             .finally(function () {
               cv.classList.remove("is-pdf-export");

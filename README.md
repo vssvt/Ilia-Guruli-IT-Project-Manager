@@ -1,6 +1,6 @@
 # CV — Ilia Guruli
 
-Статична сторінка резюме (`index.html`). Публікація через **GitHub Pages** (безкоштовно).
+Статична сторінка резюме: **`index.html`** (макет + стилі) і **`cv-data.json`** (усі тексти й структура). Публікація через **GitHub Pages** (безкоштовно).
 
 ## Локально
 
@@ -39,12 +39,12 @@ python3 -m http.server 8080
 
 ## Оновлення CV
 
-Після змін у `index.html`:
+Редагуйте **`cv-data.json`** (ім’я, досвід, освіта тощо), зберігайте JSON валідним. Потім:
 
 ```bash
-git add index.html
-git commit -m "Update CV"
+git add cv-data.json
+git commit -m "Update CV data"
 git push
 ```
 
-Оновлення на сайті з’явиться за хвилину-дві.
+Щоб змінити **типографіку чи сітку**, правте стилі в **`index.html`** (блок `<style>`).

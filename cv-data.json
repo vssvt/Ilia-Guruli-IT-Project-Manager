@@ -1,0 +1,116 @@
+{
+  "name": "Ilia Guruli",
+  "title": "Senior IT Project Manager",
+  "contact": {
+    "rows": [
+      { "icon": "location", "text": "Remote, Tbilisi, Georgia" },
+      { "icon": "email", "text": "iliaguruli5@gmail.com", "href": "mailto:iliaguruli5@gmail.com" },
+      { "icon": "phone", "text": "+995 574 800 757", "href": "tel:+995574800757" },
+      { "icon": "linkedin", "text": "LinkedIn", "href": "https://www.linkedin.com/in/ilia-guruli-a8babb10a", "external": true }
+    ]
+  },
+  "about": [
+    "Senior IT Project Manager with strong experience leading Microsoft Dynamics 365 Business Central (BC) ERP implementations in retail, banking, and international environments. Experienced in managing ERP rollouts, cross-functional teams, and enterprise digital transformation projects.",
+    "Proven track record delivering BC solutions including Finance, HR & Payroll, Sales/POS, Purchase, and Warehouse Management modules for large-scale organizations and multinational projects."
+  ],
+  "education": [
+    {
+      "period": "2016–2018",
+      "degree": "Master’s in Informatics and Management Systems",
+      "institution": "Georgian Technical University"
+    },
+    {
+      "period": "2011–2016",
+      "degree": "Bachelor’s in Informatics, Mathematics and Natural Sciences",
+      "institution": "St. Andrew the First-Called Georgian University of the Patriarchate of Georgia"
+    }
+  ],
+  "languages": [
+    { "name": "Georgian", "level": "Native" },
+    { "name": "English", "level": "Fluent" }
+  ],
+  "skills": {
+    "items": [
+      "Remote and distributed project team management",
+      "Team leadership and stakeholder alignment",
+      "Agile methodologies",
+      "Business analysis and process modelling (use cases, user stories, diagrams)",
+      "Planning, milestones, scope, schedule, and cost estimation",
+      "Requirements gathering, documentation, and specifications",
+      "Bridging technical and business perspectives",
+      "Quality control of deliverables",
+      "Risk mitigation (financial and legal)",
+      "Web development fundamentals (C#, C++, Java, JavaScript, CSS, HTML)"
+    ],
+    "toolsLabel": "Tools",
+    "tools": "Microsoft Office · Microsoft Project · Google Analytics · Hotjar · Trello · Jira · Microsoft SharePoint · Miro · Figma · Zeplin · Postman · Swagger · TestRail"
+  },
+  "certificates": [
+    "PSM I (scrum.org, ID: 728942) — 1 Dec 2021",
+    "PRINCE2® Foundation — 15 Jul 2021",
+    "Business Analysis and Process Management — 4 Jul 2019",
+    "Project Management Training (PMI) — 30 Oct 2018",
+    "Agile Scrum Fundamental — 20 Aug 2017",
+    "CCNA — 16 Sep 2017"
+  ],
+  "experience": [
+    {
+      "position": "Senior IT Project Manager",
+      "company": "Prodware Georgia",
+      "period": "Oct 2024 – present",
+      "description": "Leading Microsoft Dynamics 365 Business Central programmes for enterprise clients across retail, banking, and international rollout contexts.",
+      "bullets": [
+        "ICR Company — retail ERP transformation (Dynamics 365 Business Central + LS Retail).",
+        "TBC Bank — HR & payroll (Dynamics 365 Business Central HR & Payroll).",
+        "Prodware International — whistleblowing platform deployment across multiple countries (France, Germany, Spain, Netherlands, and other branches)."
+      ]
+    },
+    {
+      "position": "IT Project Manager",
+      "company": "PSP Insurance",
+      "period": "Jan 2024 – Jun 2025 · full-time, on-site",
+      "description": "",
+      "bullets": ["Insurance core system change programme."]
+    },
+    {
+      "position": "IT Project Manager",
+      "company": "Aldagi Insurance Company",
+      "period": "Jan 2022 – Nov 2023 · full-time, hybrid (Georgia)",
+      "description": "",
+      "bullets": ["Aldagi ecosystem mobile app (Android, iOS)."]
+    },
+    {
+      "position": "IT Project Manager",
+      "company": "National Bank of Georgia",
+      "period": "Aug 2018 – Jan 2022 · full-time · Tbilisi, Georgia",
+      "description": "",
+      "bullets": [
+        "National Bank of Georgia corporate website.",
+        "Financial education portal (website)."
+      ]
+    },
+    {
+      "position": "Quality Assurance Manager / IT Analyst",
+      "company": "TEGETA MOTORS",
+      "period": "Mar 2017 – Aug 2018 · full-time",
+      "description": "",
+      "bullets": [
+        "Online shop, corporate websites, corporate reporting system.",
+        "Best Western Sairme, Sairme Resort, Segrex Auto Gallery, InterAuto corporate sites.",
+        "My Car History (Tegeta, Toyota), queue management, SMS platform.",
+        "Service reservation (Tegeta, Toyota), academy, Tegeta account, local purchase software."
+      ]
+    },
+    {
+      "position": "Consulting",
+      "company": "Metad (Ori Nabiji)",
+      "period": "Oct 2015 – Feb 2017 · mobile & web",
+      "description": "",
+      "bullets": [
+        "Online shop app (Android, iOS); online shop (website).",
+        "Courier and loyalty apps (Android, iOS); operator app (Android)."
+      ]
+    }
+  ],
+  "footer": "Last updated: May 2026"
+}
