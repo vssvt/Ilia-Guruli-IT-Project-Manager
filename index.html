@@ -63,6 +63,7 @@
         --space-title-to-content: 24px;
         --space-title-to-paragraph: 12px;
         --space-paragraph-to-bullets: 8px;
+        --space-subtitle-to-title: 4px;
         --space-section: 64px;
         --space-section-max: 72px;
         --space-grid: 48px;
@@ -148,7 +149,7 @@
       }
 
       .resume__intro {
-        padding-bottom: var(--space-section-max);
+        padding-bottom: 48px;
         margin-bottom: 0;
       }
 
@@ -318,7 +319,7 @@
       }
 
       .resume__edu-period {
-        margin: 0 0 4px;
+        margin: 0 0 var(--space-subtitle-to-title);
         font-size: var(--font-caption-size);
         font-weight: var(--font-caption-weight);
         line-height: var(--font-caption-line);
@@ -357,7 +358,7 @@
       }
 
       .resume__job + .resume__job {
-        margin-top: var(--space-section);
+        margin-top: 32px;
       }
 
       .resume__job-head {
@@ -369,7 +370,7 @@
       }
 
       .resume__job-meta {
-        margin: 0 0 6px;
+        margin: 0 0 var(--space-subtitle-to-title);
         font-size: var(--font-body-s-size);
         font-weight: var(--font-body-s-weight);
         line-height: var(--font-body-s-line);
@@ -393,8 +394,19 @@
         margin-bottom: 6px;
       }
 
+      .resume__experience-qrs {
+        margin-top: 32px;
+      }
+
+      .resume__experience-qrs__img {
+        display: block;
+        max-width: 100%;
+        width: min(100%, 320px);
+        height: auto;
+      }
+
       .resume__footer {
-        margin-top: var(--space-section-max);
+        margin-top: 48px;
         font-size: var(--font-caption-size);
         font-weight: var(--font-caption-weight);
         line-height: var(--font-caption-line);
@@ -501,6 +513,15 @@
           return li;
         }
 
+        function siteBasePrefix() {
+          var p = location.pathname;
+          if (!p.endsWith("/")) {
+            if (/\.html$/i.test(p)) p = p.replace(/\/[^/]+$/, "/");
+            else p += "/";
+          }
+          return location.origin + p;
+        }
+
         function renderResume(data) {
           var root = document.getElementById("cv");
           root.innerHTML = "";
@@ -564,6 +585,17 @@
               }
               ex.appendChild(jobEl);
             });
+            if (data.experienceQr && data.experienceQr.src) {
+              var qrWrap = el("div", "resume__experience-qrs");
+              var qrImg = document.createElement("img");
+              qrImg.className = "resume__experience-qrs__img";
+              qrImg.alt = data.experienceQr.alt || "";
+              qrImg.loading = "lazy";
+              qrImg.decoding = "async";
+              qrImg.src = siteBasePrefix() + String(data.experienceQr.src).replace(/^\//, "");
+              qrWrap.appendChild(qrImg);
+              ex.appendChild(qrWrap);
+            }
             main.appendChild(ex);
           }
 
@@ -638,12 +670,7 @@
 
         /* Resolve data URL so project Pages works with or without trailing slash on the path. */
         function cvDataJsonUrl() {
-          var p = location.pathname;
-          if (!p.endsWith("/")) {
-            if (/\.html$/i.test(p)) p = p.replace(/\/[^/]+$/, "/");
-            else p += "/";
-          }
-          return location.origin + p + "cv-data.json";
+          return siteBasePrefix() + "cv-data.json";
         }
 
         function loadData() {
