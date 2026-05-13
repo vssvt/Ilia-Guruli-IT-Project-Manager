@@ -39,18 +39,17 @@
       "Requirements gathering, documentation, and specifications",
       "Bridging technical and business perspectives",
       "Quality control of deliverables",
-      "Risk mitigation (financial and legal)",
-      "Web development fundamentals (C#, C++, Java, JavaScript, CSS, HTML)"
+      "Risk mitigation (financial and legal)"
     ],
-    "tools": "Microsoft Office · Microsoft Project · Google Analytics · Hotjar · Trello · Jira · Microsoft SharePoint · Miro · Figma · Zeplin · Postman · Swagger · TestRail"
+    "tools": "Jira • Azure DevOps • Harvest (T&M Tracking) • Trello • Microsoft Project • Microsoft Office • SharePoint • Miro • Figma • Postman • Swagger • TestRail • Google Analytics • Hotjar\n\nBasic Technical Knowledge: C# • Java • JavaScript • HTML • CSS"
   },
   "certificates": [
-    "PSM I (scrum.org, ID: 728942) — 1 Dec 2021",
-    "PRINCE2® Foundation — 15 Jul 2021",
-    "Business Analysis and Process Management — 4 Jul 2019",
-    "Project Management Training (PMI) — 30 Oct 2018",
-    "Agile Scrum Fundamental — 20 Aug 2017",
-    "CCNA — 16 Sep 2017"
+    "PSM I – Scrum.org (2021)",
+    "PRINCE2®️ Foundation Certificate in Project Management (2021)",
+    "Business Analysis and Process Management Certificate (2019)",
+    "Project Management Training Certificate – PMI Standards (2018)",
+    "Agile Scrum Fundamental Certificate (2017)",
+    "CCNA Certificate (2017)"
   ],
   "experience": [
     {

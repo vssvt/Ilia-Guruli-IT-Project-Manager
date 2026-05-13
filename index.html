@@ -598,14 +598,14 @@
           /* right column: tools, certificates, education, languages, then QR */
           if (data.skills && data.skills.tools) {
             var toolsSec = el("section", "resume__section");
-            toolsSec.appendChild(el("h2", "resume__section-title", "tools"));
+            toolsSec.appendChild(el("h2", "resume__section-title", "Tools & Technologies"));
             toolsSec.appendChild(el("p", "resume__tools", data.skills.tools));
             side.appendChild(toolsSec);
           }
 
           if (data.certificates && data.certificates.length) {
             var ce = el("section", "resume__section");
-            ce.appendChild(el("h2", "resume__section-title", "certificates"));
+            ce.appendChild(el("h2", "resume__section-title", "Certifications"));
             var cul = el("ul", "resume__certs");
             data.certificates.forEach(function (c) {
               cul.appendChild(el("li", null, c));
