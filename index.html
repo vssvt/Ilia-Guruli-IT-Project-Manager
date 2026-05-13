@@ -539,11 +539,7 @@
           var titleEl = el("p", "resume__title", data.title || "");
           header.appendChild(titleEl);
 
-          var ul = el("ul", "resume__contact");
-          (data.contact && data.contact.rows ? data.contact.rows : []).forEach(function (row) {
-            ul.appendChild(renderContactRow(row));
-          });
-          header.appendChild(ul);
+          /* Contact section hidden by request. */
 
           var intro = el("div", "resume__intro");
           intro.appendChild(header);
@@ -655,16 +651,7 @@
             side.appendChild(lang);
           }
 
-          if (data.experienceQr && data.experienceQr.src) {
-            var qrWrap = el("div", "resume__experience-qrs");
-            var qrImg = document.createElement("img");
-            qrImg.className = "resume__experience-qrs__img";
-            qrImg.alt = data.experienceQr.alt || "";
-            qrImg.decoding = "async";
-            qrImg.src = siteBasePrefix() + String(data.experienceQr.src).replace(/^\//, "");
-            qrWrap.appendChild(qrImg);
-            side.appendChild(qrWrap);
-          }
+          /* QR section hidden by request. */
 
           grid.appendChild(main);
           grid.appendChild(side);
