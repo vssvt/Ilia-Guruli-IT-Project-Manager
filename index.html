@@ -269,6 +269,7 @@
 
       /* 14px secondary copy: summary, job text, expertise, tools, certs, school names, language levels */
       .resume__prose,
+      .resume__job-role,
       .resume__job-desc,
       .resume__job-bullets,
       .resume__certs,
@@ -370,6 +371,14 @@
 
       .resume__job-title {
         margin: 0 0 4px;
+      }
+
+      .resume__job-role {
+        margin: 0;
+      }
+
+      .resume__job-role:empty {
+        display: none;
       }
 
       .resume__job-desc {
@@ -569,6 +578,9 @@
                 head.appendChild(el("h3", "resume__job-title", job.company));
               }
               jobEl.appendChild(head);
+              if (job.position) {
+                jobEl.appendChild(el("p", "resume__job-role", "Role: " + job.position));
+              }
               if (job.description) {
                 jobEl.appendChild(el("p", "resume__job-desc", job.description));
               }
